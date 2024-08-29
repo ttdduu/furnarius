@@ -63,8 +63,11 @@ def crear_carpeta_sets(path_general_entrenamientos):
     return new_directory_path
 
 
+tipo = "alfa"
+
 # dónde voy a guardar los train y test sets
-path_general_entrenamientos = "/home/ttdduu/lsd/tesislab/entrenamientos/alfa"
+path_general_entrenamientos = f"/home/ttdduu/lsd/tesislab/entrenamientos/{tipo}"
+
 
 tr_name, tr_split = "train_set", 0.5
 # val_name, val_split = '...', ... # si quisiera generar un validation split para monitorear acc
@@ -72,17 +75,33 @@ test_name = "test_set"
 path_del_entrenamiento = crear_carpeta_sets(
     path_general_entrenamientos
 )  # el directory donde quiero que se guarden los diccionarios que estoy por generar (train y test sets), y los plots y base_network si quisiera guardarlos
-base_path = "/home/ttdduu/lsd/tesislab/datos/pitches/machos"  # el directory donde están los pitches
-individuals = [
-    "A",
-    "B",
-    "19",
-    "23",
-    "34",
-    "AC1",
-    "AC2",
-    "EC1",
-]
+if tipo == "alfa":
+    base_path = f"/home/ttdduu/lsd/tesislab/datos/pitches/alfa_dpi50"  # el directory donde están los pitches
+    individuals = [
+        "A_aug",
+        "B_aug",
+        "19_aug",
+        "23_aug",
+        "34_aug",
+        "HAC1_aug",
+        "HAC2_aug",
+        "HEC1_aug",
+    ]
+
+else:
+    base_path = f"/home/ttdduu/lsd/tesislab/datos/pitches/{tipo}"  # el directory donde están los pitches
+
+    individuals = [
+        "A",
+        "B",
+        "19",
+        "23",
+        "34",
+        "AC1",
+        "AC2",
+        "EC1",
+    ]
+
 
 sdp.datos_splits(
     [tr_name, tr_split],
